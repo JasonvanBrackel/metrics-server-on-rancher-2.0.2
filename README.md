@@ -76,6 +76,14 @@ export CATTLE_SECRET_KEY=bszpsrvjsgk2srlzx9tcsmk2dmntfz7zcsnzb22pghgmkv8h4cxff5
 ![Edit Button](10-EditButton.png)
 
 * Modify the rancherKubernetesEngineConfig section.  You'll want to make the textarea larger. Add the extra args as highlighted to KubeAPI, Kubelet, and KubeControlManager.
+* * Kube API Changes (The extraArgs setting)
+```sh
+"kubeApi":{"podSecurityPolicy":false, "type":"/v3/schemas/kubeAPIService", "extraArgs":{"requestheader-client-ca-file":"/etc/kubernetes/ssl/kube-ca.pem", "requestheader-extra-headers-prefix":"X-Remote-Extra-", "requestheader-group-headers":"X-Remote-Group", "requestheader-username-headers":"X-Remote-User", "proxy-client-cert-file":"/etc/kubernetes/ssl/kube-proxy.pem", "proxy-client-key-file":"/etc/kubernetes/ssl/kube-proxy-key.pem"}}
+```
+* * Kubelet Changes (only the extraArgs setting)
+```sh
+"kubelet":{"failSwapOn":false, "type":"/v3/schemas/kubeletService", "extraArgs":{"authentication-token-webhook":"true"}}
+```
 ![KubeAPI Changes](11-KubeApiChanges.png)
 ![Kubelet Changes](12-KubeletChanges.png))
 
